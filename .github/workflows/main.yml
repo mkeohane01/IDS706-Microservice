@@ -1,0 +1,30 @@
+name: Python Autoactions
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9 
+
+    - name: Install dependencies
+      run: make install
+
+    - name: Lint
+      run: make lint
+
+    - name: Run tests
+      run: make test
+
+    - name: Format
+      run: make format
+
+
+
