@@ -4,12 +4,15 @@ class OrderBehavior(SequentialTaskSet):
 
     @task
     def post_order(self):
-        data={
-            "product_name": "Test Product",
-            "quantity": 5,
-            "customer_name": "Test Customer",
-        }
-        with self.client.post("/orders", json=data, catch_response=True) as response:
+        data = {
+            'product_name': 'Tent', 
+            'quantity': '1', 
+            'customer_name': 'test- Duke Tenter', 
+            'street_address': 'K-ville', 
+            'state': 'NC', 
+            'zip_code': '27708'
+            }
+        with self.client.post("/", json=data, catch_response=True) as response:
             if response.status_code == 201:
                 self.order_id = response.json()['order_id']
             else:
@@ -24,4 +27,4 @@ class OrderBehavior(SequentialTaskSet):
 
 class OrderUser(HttpUser):
     tasks = [OrderBehavior]
-    wait_time = between(0.5, 1)
+    wait_time = between(0.2, 0.4)
