@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Description</title>
+</head>
+<body>
+
+    <h2>Your Order</h2>
+
+    <p>Order ID: <span id="order_id">{{ result.order_id }}</span></p>
+    <p>Product: <span id="product_name">{{ result.product_name }}</span></p>
+    <p>Quantity: <span id="quantity">{{ result.quantity }}</span></p>
+    <p>Price: <span id="price">{{ result.price }}</span></p>
+
+
+    <h2>Customer Details</h2>
+
+    <p>Name: <span id="customer_name">{{ result.customer_name }}</span></p>
+    <p>Shipping Address: <span id="shipping_address">{{ result.address }}</span></p>
+
+
+    <h2>Popular Products in Your Area</h2>
+
+    <ul id="popular_products">
+        {% for product in result.popular_products %}
+            <li>{{ product }}</li>
+        {% endfor %}
+    </ul>
+
+
+</body>
