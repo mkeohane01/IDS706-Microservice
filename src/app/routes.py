@@ -1,24 +1,7 @@
 from flask import request, jsonify, render_template
-from app import app, db
-from app.datapipe import Order
-import pyodbc
-from dotenv import load_dotenv
-import os
-load_dotenv()
+from app import app
+from app.utils import get_db_connection
 
-
-def get_db_connection():
-    connection = pyodbc.connect(
-        'Driver={ODBC Driver 18 for SQL Server};'
-        'Server=tcp:team-project-orders.database.windows.net,1433;'
-        'Database=OrdersDB;'
-        f'Uid={os.getenv("DB_USERNAME")};'
-        f'Pwd={os.getenv("DB_PASSWORD")};'  
-        'Encrypt=yes;'
-        'TrustServerCertificate=no;'
-        'Connection Timeout=30;'
-    )
-    return connection
 
 
 def get_products():
@@ -48,10 +31,10 @@ def get_products():
 def create_order():
     if request.method == 'POST':
         data = request.json
-        new_order = Order(product_name=data['product_name'], quantity=data['quantity'], customer_name=data['customer_name'])
-        db.session.add(new_order)
-        db.session.commit()
+        #new_order = Order(product_name=data['product_name'], quantity=data['quantity'], customer_name=data['customer_name'])
+        new_order = 1
         print(f"New order! {new_order.id}")
+
         return jsonify({'message': 'Order created', 'order_id': new_order.id}), 201
     
     elif request.method == 'GET':
