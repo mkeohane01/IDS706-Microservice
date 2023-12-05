@@ -31,7 +31,6 @@ def get_order(order_id):
 
     order = get_order_from_db(order_id)
 
-
     order_data = {
                 'order_id': order_id,
                 'product_name': order["product_name"],
@@ -48,7 +47,6 @@ def get_order(order_id):
 @app.route('/get_product', methods=['GET'])
 def get_product():
     product_name = request.args.get('product_name')
-    print(f"Product: {product_name}")
     data = get_products()
     
     for product in data["products"]:
