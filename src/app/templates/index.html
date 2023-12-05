@@ -9,16 +9,48 @@
     <h2>Place an Order</h2>
     <form id="orderForm">
         <label for="product_name">Product Name:</label><br>
-        <input type="text" id="product_name" name="product_name" required><br>
+        <select id="product_name" name="product_name" required onchange="updateProductDetails()">
+            {% for product in result.products %}
+                <option value="{{ product.product_name }}">{{ product.product_name }}</option>
+            {% endfor %}
+        </select><br>
+
+        <p>Price: <span id="productPrice"></span></p>
+        <img id="productImage" src="" alt="Product Image" style="max-width: 200px; max-height: 200px;">
 
         <label for="quantity">Quantity:</label><br>
-        <input type="number" id="quantity" name="quantity" required><br>
+        <input type="number" id="quantity" name="quantity" min="1" required><br>
 
         <label for="customer_name">Customer Name:</label><br>
         <input type="text" id="customer_name" name="customer_name" required><br>
 
         <input type="submit" value="Submit">
     </form>
+    
+    <script>
+        function updateProductDetails() {
+            var selectedProductName = document.getElementById('product_name').value;
+            
+            fetch(`http://localhost:5000/get_product?product_name=${encodeURIComponent(selectedProductName)}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Product not found');
+                    }
+                    return response.json();
+                })
+                .then(product => {
+                    document.getElementById('productPrice').textContent = product.price;
+                    document.getElementById('productImage').src = product.image;
+                    document.getElementById('productImage').alt = product.product_name;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    
+        // Call updateProductDetails when the page loads and when the product selection changes
+        document.addEventListener('DOMContentLoaded', updateProductDetails);
+        document.getElementById('product_name').addEventListener('change', updateProductDetails);
+    </script>
+
 
     <script>
         document.getElementById("orderForm").addEventListener("submit", function(event){
