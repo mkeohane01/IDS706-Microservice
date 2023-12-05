@@ -92,7 +92,13 @@
             .then(response => response.json())
             .then(data => {
                 console.log('Success:', data);
-                alert("Order placed! ID: " + data.order_id);
+                if(data.order_id) {
+                    console.log('Order ID', data.order_id);
+                    window.location.href = `/orders/${data.order_id}`;  // Redirect to the order page
+                } else {
+                    // Handle the case where order_id is not returned
+                    alert("Order creation failed!");
+                }
             })
             .catch((error) => {
                 console.error('Error:', error);
