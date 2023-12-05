@@ -1,59 +1,25 @@
-from flask import request, jsonify, render_template
+from flask import request, jsonify, render_template, redirect
 from app import app
-from app.utils import get_db_connection
+from app.utils import write_order_to_db, get_order_from_db, get_products, state_abbreviations
 
 
-
-def get_products():
-    conn = get_db_connection()
-    cursor = conn.cursor()
-
-    cursor.execute("SELECT product_name, price, description, image, num_in_stock FROM PRODUCTS")
-    products = cursor.fetchall()
-
-    conn.close()
-
-    formatted_products = []
-    for product in products:
-        formatted_product = {
-            'product_name': product[0],
-            'price': product[1],
-            'description': product[2],
-            'image': product[3],
-            'num_in_stock': product[4]
-        }
-        formatted_products.append(formatted_product)
-
-    return {'products': formatted_products}
-
-
-@app.route('/orders', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def create_order():
     if request.method == 'POST':
         data = request.json
-        #new_order = Order(product_name=data['product_name'], quantity=data['quantity'], customer_name=data['customer_name'])
-        new_order = 1
-        print(f"New order! {new_order.id}")
-
-        return jsonify({'message': 'Order created', 'order_id': new_order.id}), 201
+        order_id = write_order_to_db(data)
+        print(f"New order! {order_id}")
+        return jsonify({'message': 'Order created', 'order_id': order_id}), 201
     
     elif request.method == 'GET':
         data = get_products()
-        return render_template('index.html', result=data)
+        return render_template('index.html', result=data, states=state_abbreviations)
 
 
-@app.route('/orders/<int:order_id>', methods=['GET'])
+@app.route('/orders/<string:order_id>', methods=['GET'])
 def get_order(order_id):
-    # order = Order.query.get_or_404(order_id)
-    # print(f"Order {order.id} retrieved")
-    # TODO: Get order from databse. Check order id too. If id not valid, show invalid page. Also get popular products from pipeline. 
-    order = {
-        'product_name': 'Test Product',
-        'quantity': 5,
-        'price': 100,
-        'customer_name': 'Test Customer',
-        'address': '123 Test Street, NC 27502'
-    }
+
+    order = get_order_from_db(order_id)
 
     order_data = {
                 'order_id': order_id,
