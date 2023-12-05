@@ -18,14 +18,19 @@ def create_order():
             return jsonify({'message': 'Error creating order'}), 500
     
     elif request.method == 'GET':
-        data = get_products()
-        return render_template('index.html', result=data, states=state_abbreviations)
+        try:
+            data = get_products()
+            return render_template('index.html', result=data, states=state_abbreviations)
+        except Exception as e:
+            logging.error(f"Error fetching products: {e}") 
+            return jsonify({'message': 'Error fetching products'}), 500
 
 
 @app.route('/orders/<string:order_id>', methods=['GET'])
 def get_order(order_id):
 
     order = get_order_from_db(order_id)
+
 
     order_data = {
                 'order_id': order_id,
