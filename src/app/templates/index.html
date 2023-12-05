@@ -19,6 +19,7 @@
 
         <p>Price: <span id="productPrice"></span></p>
         <img id="productImage" src="" alt="Product Image" style="max-width: 200px; max-height: 200px;">
+        <p><span id="productDescription"></span></p>
 
         <label for="quantity">Quantity:</label><br>
         <input type="number" id="quantity" name="quantity" min="1" required><br>
@@ -44,6 +45,7 @@
                     document.getElementById('productPrice').textContent = product.price;
                     document.getElementById('productImage').src = product.image;
                     document.getElementById('productImage').alt = product.product_name;
+                    document.getElementById('productDescription').textContent = product.description; // New line to update description
                 })
                 .catch(error => console.error('Error:', error));
         }
