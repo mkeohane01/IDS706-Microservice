@@ -27,7 +27,20 @@
         <label for="customer_name">Customer Name:</label><br>
         <input type="text" id="customer_name" name="customer_name" required><br>
 
-        <input type="submit" value="Place Order">
+        <label for="street_address">Street Address:</label><br>
+        <input type="text" id="street_address" name="street_address" required><br>
+
+        <label for="state">State:</label><br>
+        <select id="state" name="state" required>
+            {% for state in states %}
+                <option value="{{ state }}">{{ state }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="zip_code">Zip Code:</label><br>
+        <input type="number" id="zip_code" name="zip_code" required><br>
+
+        <input type="submit" value="Submit">
     </form>
     
     <script>
@@ -63,10 +76,13 @@
             let formData = {
                 product_name: document.getElementById("product_name").value,
                 quantity: document.getElementById("quantity").value,
-                customer_name: document.getElementById("customer_name").value
+                customer_name: document.getElementById("customer_name").value,
+                street_address: document.getElementById("street_address").value,
+                state: document.getElementById("state").value,
+                zip_code: document.getElementById("zip_code").value
             };
 
-            fetch('http://127.0.0.1:5000/orders', {
+            fetch('http://127.0.0.1:5000/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
