@@ -18,27 +18,39 @@
         </select><br>
 
         <p>Price: <span id="productPrice"></span></p>
-        <img id="productImage" src="" alt="Product Image" style="max-width: 200px; max-height: 200px;">
+        <img class= "product-image" id="productImage" src="" alt="Product Image">
         <p><span id="productDescription"></span></p>
 
-        <label for="quantity">Quantity:</label><br>
-        <input type="number" id="quantity" name="quantity" min="1" required><br>
-
-        <label for="customer_name">Customer Name:</label><br>
-        <input type="text" id="customer_name" name="customer_name" required><br>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="quantity-group">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" min="1" required>
+            </div>
+        
+            <div class="form-group customer-name-group">
+                <label for="customer_name">Customer Name:</label>
+                <input type="text" id="customer_name" name="customer_name" required>
+            </div>
+        </div>
 
         <label for="street_address">Street Address:</label><br>
         <input type="text" id="street_address" name="street_address" required><br>
 
-        <label for="state">State:</label><br>
-        <select id="state" name="state" required>
-            {% for state in states %}
-                <option value="{{ state }}">{{ state }}</option>
-            {% endfor %}
-        </select><br>
-
-        <label for="zip_code">Zip Code:</label><br>
-        <input type="number" id="zip_code" name="zip_code" required><br>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="state">State:</label>
+                <select id="state" name="state" required>
+                    {% for state in states %}
+                        <option value="{{ state }}">{{ state }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        
+            <div class="form-group">
+                <label for="zip_code">Zip Code:</label>
+                <input type="number" id="zip_code" name="zip_code" required>
+            </div>
+        </div>
 
         <input type="submit" value="Submit">
     </form>

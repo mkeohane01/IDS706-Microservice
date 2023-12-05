@@ -25,6 +25,38 @@ form {
     margin: 20px auto;
 }
 
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    padding-right: 10px;
+}
+
+.customer-name-group {
+    flex-grow: 2; /* This will allow the customer name field to grow larger than its siblings */
+}
+
+#customer_name {
+    width: 100%; /* Ensure the input field takes up the full width of its container */
+}
+
+.quantity-group {
+    flex-basis: 100px; /* or any other fixed width */
+}
+
+.product-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 200px;
+    max-height: 200px;
+}
+
 label, p {
     margin-top: 10px;
     display: block;
