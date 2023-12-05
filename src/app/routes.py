@@ -1,15 +1,21 @@
 from flask import request, jsonify, render_template, redirect
 from app import app
+import logging
 from app.utils import write_order_to_db, get_order_from_db, get_products, state_abbreviations
 
 
 @app.route('/', methods=['GET', 'POST'])
 def create_order():
     if request.method == 'POST':
-        data = request.json
-        order_id = write_order_to_db(data)
-        print(f"New order! {order_id}")
-        return jsonify({'message': 'Order created', 'order_id': order_id}), 201
+        try:
+            data = request.json
+            order_id = write_order_to_db(data)
+            logging.info(f"New order created: {order_id}")
+            print(f"New order! {order_id}")
+            return jsonify({'message': 'Order created', 'order_id': order_id}), 201
+        except Exception as e:
+            logging.error(f"Error creating order: {e}") 
+            return jsonify({'message': 'Error creating order'}), 500
     
     elif request.method == 'GET':
         data = get_products()
