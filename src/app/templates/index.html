@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h2>Place an Order</h2>
+    <h1>NOZAMA</h1>
+    <h4>Sweet deals. All the time.</h4>
     <form id="orderForm">
         <label for="product_name">Product Name:</label><br>
         <select id="product_name" name="product_name" required onchange="updateProductDetails()">
@@ -25,7 +26,7 @@
         <label for="customer_name">Customer Name:</label><br>
         <input type="text" id="customer_name" name="customer_name" required><br>
 
-        <input type="submit" value="Submit">
+        <input type="submit" value="Place Order">
     </form>
     
     <script>

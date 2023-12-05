@@ -6,8 +6,13 @@ body {
     color: #333;
 }
 
-h2 {
+h1 {
     color: #0056b3;
+    text-align: center;
+}
+
+h4 {
+    color: #292929;
     text-align: center;
 }
 
