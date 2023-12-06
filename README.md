@@ -1,9 +1,9 @@
 # Microservice
 
-[![Install Dependencies](https://github.com/username/repository/actions/workflows/install.yml/badge.svg)](https://github.com/username/repository/actions/workflows/workflow-name.yml)
-[![Lint Code](https://github.com/username/repository/actions/workflows/lint.yml/badge.svg)](https://github.com/username/repository/actions/workflows/workflow-name.yml)
-[![Run Tests](https://github.com/username/repository/actions/workflows/test.yml/badge.svg)](https://github.com/username/repository/actions/workflows/workflow-name.yml)
-[![Format Code](https://github.com/username/repository/actions/workflows/format.yml/badge.svg)](https://github.com/username/repository/actions/workflows/workflow-name.yml)
+[![Install Dependencies](https://github.com/mkeohane01/IDS706-Microservice/actions/workflows/install.yml/badge.svg)](https://github.com/mkeohane01/IDS706-Microservice/actions/workflows/workflow-name.yml)
+[![Lint Code](https://github.com/mkeohane01/IDS706-Microservice/actions/workflows/lint.yml/badge.svg)](https://github.com/mkeohane01/IDS706-Microservice/actions/workflows/workflow-name.yml)
+[![Run Tests](https://github.com/mkeohane01/IDS706-Microservice/actions/workflows/test.yml/badge.svg)](https://github.com/mkeohane01/IDS706-Microservice/actions/workflows/workflow-name.yml)
+[![Format Code](https://github.com/mkeohane01/IDS706-Microservice/actions/workflows/format.yml/badge.svg)](https://github.com/mkeohane01/IDS706-Microservice/actions/workflows/workflow-name.yml)
 
 [![Python Autoactions](https://github.com/mkeohane01/python_template/actions/workflows/main.yml/badge.svg)](https://github.com/mkeohane01/python_template/actions/workflows/main.yml)
 
