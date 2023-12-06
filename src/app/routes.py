@@ -1,7 +1,7 @@
 from flask import request, jsonify, render_template, redirect
 from app import app
 import logging
-from app.utils import write_order_to_db, get_order_from_db, get_products, state_abbreviations
+from app.utils import write_order_to_db, get_order_from_db, get_products, find_popular_products, state_abbreviations
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -30,6 +30,9 @@ def create_order():
 def get_order(order_id):
 
     order = get_order_from_db(order_id)
+    print(order)
+    popular_products = list(find_popular_products(state=order["state"]))
+    print(popular_products)
 
     order_data = {
                 'order_id': order_id,
@@ -38,7 +41,7 @@ def get_order(order_id):
                 'total_price': order["total_price"],
                 'customer_name': order["customer_name"],
                 'address': order["address"],
-                'popular_products': ["a", "b", "c"]
+                'popular_products': popular_products
             }
 
     return render_template('view_order.html', result=order_data)

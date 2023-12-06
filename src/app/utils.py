@@ -67,7 +67,8 @@ def get_order_from_db(order_id):
             'quantity': order[2],
             'total_price': round(order[3],2),
             'customer_name': order[4],
-            'address': f"{order[5]}, {order[6]} {order[7]}"
+            'address': f"{order[5]}, {order[6]} {order[7]}",
+            'state': order[6]
         }
         return order_dict
     except TypeError:
@@ -105,6 +106,23 @@ def get_products():
         formatted_products.append(formatted_product)
 
     return {'products': formatted_products}
+
+
+def find_popular_products(state):
+    """
+    Returns a list of the top 3 most popular products for a given state.
+    """
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        cursor.execute("SELECT product_name AS num_orders FROM ORDERS WHERE state=? GROUP BY product_name ORDER BY num_orders DESC LIMIT 3", state)
+        products = cursor.fetchall()
+
+        conn.close()
+        return products
+    except Exception as e:
+        return []
 
 
 state_abbreviations = [
