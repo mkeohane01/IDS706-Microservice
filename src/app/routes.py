@@ -53,7 +53,7 @@ def get_order(order_id):
                     'address': "Failed to Fetch",
                     'popular_products': []
                 }
-        return render_template('view_order.html', result=order_data)
+        return render_template('view_order.html', result=failed_order_data)
 
 
 @app.route('/get_product', methods=['GET'])
