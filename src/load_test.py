@@ -40,4 +40,4 @@ class OrderBehavior(SequentialTaskSet):
 
 class OrderUser(HttpUser):
     tasks = [OrderBehavior]
-    wait_time = between(0.2, 0.4)
+    wait_time = between(0.1, 0.3)
