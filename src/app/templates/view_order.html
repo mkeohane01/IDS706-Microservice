@@ -28,7 +28,7 @@
 
         <ul id="popular_products">
             {% for product in result.popular_products %}
-                <li>{{ product }}</li>
+                <li>{{ product[0] }}: {{ product[1] }} {{ 'unit' if product[1] == 1 else 'units' }}</li>
             {% endfor %}
         </ul>
     </div>
