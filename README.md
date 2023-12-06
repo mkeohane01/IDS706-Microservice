@@ -10,7 +10,7 @@
 
 ## Description
 
-This project utilizes the `Flask` framework to build a microservice that interfaces with a data pipeline. The front end includes a user interface where individuals can place product orders for the product of their choose. They input the desired product, quantity, and shipping location. This data is stored in a database, undergoes data transformation, and relevant information is passed back to the user such as the top 3 products ordered in their state. 
+This project utilizes the `Flask` framework to build a microservice that interfaces with a data pipeline. The front end includes a user interface where individuals can place product orders for an online store. Input includes desired product, quantity, and shipping location. This data is stored in a database, undergoes data transformation, and relevant information is passed back to the user such as the top 3 products ordered in their state. 
 
 ## Architecture
 
