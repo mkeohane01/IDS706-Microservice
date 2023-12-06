@@ -27,21 +27,33 @@ def create_order():
 
 @app.route('/orders/<string:order_id>', methods=['GET'])
 def get_order(order_id):
-    
-    order = get_order_from_db(order_id)
-    popular_products = list(find_popular_products(state=order["state"]))
+    try:
+        order = get_order_from_db(order_id)
+        popular_products = list(find_popular_products(state=order["state"]))
 
-    order_data = {
-                'order_id': order_id,
-                'product_name': order["product_name"],
-                'quantity': order["quantity"],
-                'total_price': order["total_price"],
-                'customer_name': order["customer_name"],
-                'address': order["address"],
-                'popular_products': popular_products
-            }
+        order_data = {
+                    'order_id': order_id,
+                    'product_name': order["product_name"],
+                    'quantity': order["quantity"],
+                    'total_price': order["total_price"],
+                    'customer_name': order["customer_name"],
+                    'address': order["address"],
+                    'popular_products': popular_products
+                }
 
-    return render_template('view_order.html', result=order_data)
+        return render_template('view_order.html', result=order_data)
+    except Exception as e:
+        logging.error(f"Error fetching order: {e}") 
+        failed_order_data = {
+                    'order_id': order_id,
+                    'product_name': "Failed to Fetch",
+                    'quantity': "Failed to Fetch",
+                    'total_price': "Failed to Fetch",
+                    'customer_name': "Failed to Fetch",
+                    'address': "Failed to Fetch",
+                    'popular_products': []
+                }
+        return render_template('view_order.html', result=order_data)
 
 
 @app.route('/get_product', methods=['GET'])
