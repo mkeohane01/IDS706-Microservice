@@ -3,10 +3,10 @@ install:
 		pip install -r requirements.txt
 
 lint:
-	ruff check *.py
+	ruff check **/*.py
 
 format:
-	black *.py
+	black **/*.py
 
 test:
 	pytest -vv ./src/app
