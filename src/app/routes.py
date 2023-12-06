@@ -11,7 +11,6 @@ def create_order():
             data = request.json
             order_id = write_order_to_db(data)
             logging.info(f"New order created: {order_id}")
-            print(f"New order! {order_id}")
             return jsonify({'message': 'Order created', 'order_id': order_id}), 201
         except Exception as e:
             logging.error(f"Error creating order: {e}") 
@@ -30,9 +29,7 @@ def create_order():
 def get_order(order_id):
     
     order = get_order_from_db(order_id)
-    print(order)
     popular_products = list(find_popular_products(state=order["state"]))
-    print(popular_products)
 
     order_data = {
                 'order_id': order_id,

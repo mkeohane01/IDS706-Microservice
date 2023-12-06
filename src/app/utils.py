@@ -30,6 +30,7 @@ def write_order_to_db(order):
     cursor = conn.cursor()
 
     price = float(cursor.execute("SELECT price FROM PRODUCTS WHERE product_name=?", order["product_name"]).fetchone()[0])
+    print(price)
     order_id = str(uuid.uuid4())
 
     cursor.execute("INSERT INTO ORDERS (order_id, product_name, quantity, total_price, customer_name, street_address, state, zip_code) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
