@@ -51,6 +51,12 @@ This project uses pyodbc to allow open database connectivity, in this case SQL S
 ## Continuous Integration and Continuous Delivery (CI/CD)
 
 This project employs continuous integration and continuous delivery through the use of GitHub Actions.
+- Workflows (.github/workflows): used to automate various aspects of the software development lifecycle, including building, testing, and deploying code.
+      - format.yml
+      - install.yml
+      - lint.yml
+      - main.yml
+      - test.yml
 
 ## Dockerization
 
