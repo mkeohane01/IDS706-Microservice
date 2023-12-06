@@ -4,31 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Description</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='orders.css') }}">
 </head>
 <body>
 
-    <h2>Your Order</h2>
+    <div class="receipt-box left-content">
+        <h1>Thank you for your order!</h1>
 
-    <p>Order ID: <span id="order_id">{{ result.order_id }}</span></p>
-    <p>Product: <span id="product_name">{{ result.product_name }}</span></p>
-    <p>Quantity: <span id="quantity">{{ result.quantity }}</span></p>
-    <p>Price: <span id="total_price">{{ result.total_price }}</span></p>
+        <p><span class="bold">Order ID:</span> <span id="order_id">{{ result.order_id }}</span></p>
+        <p><span class="bold">Product:</span> <span id="product_name">{{ result.product_name }}</span></p>
+        <p><span class="bold">Quantity:</span> <span id="quantity">{{ result.quantity }}</span></p>
+        <p><span class="bold">Total Price:</span> <span id="total_price">${{ result.total_price }}</span></p>
 
+        <h3>Customer Details</h3>
 
-    <h2>Customer Details</h2>
+        <p><span class="bold">Name:</span> <span id="customer_name">{{ result.customer_name }}</span></p>
+        <p><span class="bold">Shipping address:</span> <span id="shipping_address">{{ result.address }}</span></p>
 
-    <p>Name: <span id="customer_name">{{ result.customer_name }}</span></p>
-    <p>Shipping Address: <span id="shipping_address">{{ result.address }}</span></p>
+        <div class="centered">
+            <h2>Popular Products in Your Area</h2>
+        </div>
 
-
-    <h2>Popular Products in Your Area</h2>
-
-    <ul id="popular_products">
-        {% for product in result.popular_products %}
-            <li>{{ product }}</li>
-        {% endfor %}
-    </ul>
-
-
+        <ul id="popular_products">
+            {% for product in result.popular_products %}
+                <li>{{ product }}</li>
+            {% endfor %}
+        </ul>
+    </div>
 </body>
+</html>
+
