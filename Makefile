@@ -6,7 +6,7 @@ lint:
 	ruff check **/*.py
 
 format:
-	black *.py
+	black **/*.py
 
 test:
 	pytest -vv ./src/app
