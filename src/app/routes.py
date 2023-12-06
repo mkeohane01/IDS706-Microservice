@@ -44,7 +44,16 @@ def get_order(order_id):
         return render_template('view_order.html', result=order_data)
     except Exception as e:
         logging.error(f"Error fetching order: {e}") 
-        return jsonify({'message': 'Error fetching the specified order'}), 500
+        failed_order_data = {
+                    'order_id': order_id,
+                    'product_name': "Failed to Fetch",
+                    'quantity': "Failed to Fetch",
+                    'total_price': "Failed to Fetch",
+                    'customer_name': "Failed to Fetch",
+                    'address': "Failed to Fetch",
+                    'popular_products': []
+                }
+        return render_template('view_order.html', result=order_data)
 
 
 @app.route('/get_product', methods=['GET'])
