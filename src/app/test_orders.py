@@ -1,4 +1,5 @@
-from app.utils import get_db_connection, write_order_to_db, get_order_from_db, get_products, find_popular_products
+from fastapi.testclient import TestClient
+from .main import app  # Import your FastAPI app
 
 
 def test_db_connection():

@@ -1,9 +1,10 @@
 black
 pytest
 ruff
-Flask
-flask-cors
-pyodbc==4.0.34
+fastapi 
+uvicorn
+psutil
+pyodbc
 python-dotenv==1.0.0
 locust
 uuid==1.30

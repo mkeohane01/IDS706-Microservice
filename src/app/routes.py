@@ -1,75 +1,61 @@
-from flask import request, jsonify, render_template, redirect
-from app import app
-import logging
-from app.utils import write_order_to_db, get_order_from_db, get_products, find_popular_products, state_abbreviations
+from fastapi import FastAPI, Request, HTTPException, Depends, status
+from fastapi.responses import JSONResponse, HTMLResponse
+from fastapi.templating import Jinja2Templates
+from sqlalchemy.orm import Session
 
+from . import crud, models  
+from .database import SessionLocal, engine
+from .schemas import OrderCreate, Order  
 
-@app.route('/', methods=['GET', 'POST'])
-def create_order():
-    if request.method == 'POST':
-        try:
-            data = request.json
-            order_id = write_order_to_db(data)
-            logging.info(f"New order created: {order_id}")
-            return jsonify({'message': 'Order created', 'order_id': order_id}), 201
-        except Exception as e:
-            logging.error(f"Error creating order: {e}") 
-            return jsonify({'message': 'Error creating order'}), 500
-    
-    elif request.method == 'GET':
-        try:
-            data = get_products()
-            return render_template('index.html', result=data, states=state_abbreviations)
-        except Exception as e:
-            logging.error(f"Error fetching products: {e}") 
-            return jsonify({'message': 'Error fetching products'}), 500
+models.Base.metadata.create_all(bind=engine)
+app = FastAPI()
 
+templates = Jinja2Templates(directory="templates")
 
-@app.route('/orders/<string:order_id>', methods=['GET'])
-def get_order(order_id):
+# Dependency to get the database session
+def get_db():
+    db = SessionLocal()
     try:
-        order = get_order_from_db(order_id)
-        popular_products = list(find_popular_products(state=order["state"]))
+        yield db
+    finally:
+        db.close()
 
-        order_data = {
-                    'order_id': order_id,
-                    'product_name': order["product_name"],
-                    'quantity': order["quantity"],
-                    'total_price': order["total_price"],
-                    'customer_name': order["customer_name"],
-                    'address': order["address"],
-                    'popular_products': popular_products
-                }
-
-        return render_template('view_order.html', result=order_data)
+@app.post('/', status_code=status.HTTP_201_CREATED, response_model=Order)
+async def create_order(order: OrderCreate, db: Session = Depends(get_db)):
+    try:
+        return crud.create_order(db=db, order=order)
     except Exception as e:
-        logging.error(f"Error fetching order: {e}") 
-        failed_order_data = {
-                    'order_id': order_id,
-                    'product_name': "Failed to Fetch",
-                    'quantity': "Failed to Fetch",
-                    'total_price': "Failed to Fetch",
-                    'customer_name': "Failed to Fetch",
-                    'address': "Failed to Fetch",
-                    'popular_products': []
-                }
-        return render_template('view_order.html', result=failed_order_data)
+        raise HTTPException(status_code=500, detail=str(e))
 
+@app.get('/', response_class=HTMLResponse)
+async def get_products(request: Request, db: Session = Depends(get_db)):
+    products = crud.get_products(db)
+    return templates.TemplateResponse("index.html", {"request": request, "products": products, "states": state_abbreviations})
 
-@app.route('/get_product', methods=['GET'])
-def get_product():
-    product_name = request.args.get('product_name')
-    data = get_products()
-    
-    for product in data["products"]:
-        if product["product_name"] == product_name:
-            return jsonify(product)
-        
-    return jsonify({'message': 'Product not found'}), 404
+@app.get('/orders/{order_id}', response_model=Order)
+async def get_order(order_id: str, db: Session = Depends(get_db)):
+    db_order = crud.get_order(db, order_id=order_id)
+    if db_order is None:
+        raise HTTPException(status_code=404, detail="Order not found")
+    return db_order
 
+@app.get('/orders/{order_id}', response_class=HTMLResponse)
+async def view_order(request: Request, order_id: str, db: Session = Depends(get_db)):
+    db_order = crud.get_order(db, order_id=order_id)
+    if db_order is None:
+        content = {"request": request, "order_id": order_id, "error": "Order not found"}
+    else:
+        popular_products = crud.find_popular_products(state=db_order.state, db=db)
+        content = {"request": request, "order": db_order, "popular_products": popular_products}
+    return templates.TemplateResponse("view_order.html", content)
 
-@app.route('/health_check', methods=['GET'])
-def health_check():
-    return jsonify({'message': 'Healthy :)'}), 200
+@app.get('/get_product/')
+async def get_product(product_name: str, db: Session = Depends(get_db)):
+    product = crud.get_product(db, product_name=product_name)
+    if product is None:
+        raise HTTPException(status_code=404, detail="Product not found")
+    return product
 
-    
+@app.get('/health_check')
+async def health_check():
+    return {'message': 'Healthy :)'}
