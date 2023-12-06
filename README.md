@@ -14,7 +14,7 @@ This project utilizes the `Flask` framework to build a microservice that interfa
 
 ## Architecture
 
-![Alt text](<Screenshot 2023-12-06 at 1.05.36 AM.png>)
+![Alt text](<architecture.png>)
 
 ## Usage
 
