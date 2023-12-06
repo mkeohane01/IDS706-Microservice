@@ -14,8 +14,14 @@ jobs:
       with:
         python-version: '3.8'
 
+    - name: Install ODBC Driver for SQL Server
+      run: |
+        sudo apt-get update
+        sudo ACCEPT_EULA=Y apt-get install -y unixodbc-dev msodbcsql17
+
     - name: Install dependencies
       run: make install
 
     - name: Run tests
       run: make test
+
