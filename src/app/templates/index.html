@@ -59,7 +59,7 @@
         function updateProductDetails() {
             var selectedProductName = document.getElementById('product_name').value;
             
-            fetch(`http://127.0.0.1:5000/get_product?product_name=${encodeURIComponent(selectedProductName)}`)
+            fetch(`/get_product?product_name=${encodeURIComponent(selectedProductName)}`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Product not found');
@@ -94,7 +94,7 @@
                 zip_code: document.getElementById("zip_code").value
             };
 
-            fetch('http://127.0.0.1:5000/', {
+            fetch('/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

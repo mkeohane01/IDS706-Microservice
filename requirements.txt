@@ -3,8 +3,8 @@ pytest
 ruff
 Flask
 flask-cors
-Flask-SQLAlchemy
 pyodbc==4.0.34
 python-dotenv==1.0.0
 locust
 uuid==1.30
+gunicorn
