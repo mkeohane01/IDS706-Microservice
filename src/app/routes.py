@@ -67,4 +67,9 @@ def get_product():
         
     return jsonify({'message': 'Product not found'}), 404
 
+
+@app.route('/health_check', methods=['GET'])
+def health_check():
+    return jsonify({'message': 'Healthy :)'}), 200
+
     
