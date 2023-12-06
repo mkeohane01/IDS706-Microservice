@@ -116,7 +116,7 @@ def find_popular_products(state):
         conn = get_db_connection()
         cursor = conn.cursor()
 
-        cursor.execute("SELECT product_name, COUNT(*) AS num_orders FROM ORDERS WHERE state=? GROUP BY product_name ORDER BY num_orders DESC LIMIT 3", [state])
+        cursor.execute("SELECT TOP 3 product_name, COUNT(*) AS num_orders FROM ORDERS WHERE state=? GROUP BY product_name ORDER BY num_orders DESC", [state])
         products = cursor.fetchall()
 
         conn.close()
