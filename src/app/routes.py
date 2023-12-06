@@ -28,7 +28,7 @@ def create_order():
 
 @app.route('/orders/<string:order_id>', methods=['GET'])
 def get_order(order_id):
-
+    
     order = get_order_from_db(order_id)
     print(order)
     popular_products = list(find_popular_products(state=order["state"]))
