@@ -5,7 +5,6 @@
 [![Run Tests](https://github.com/mkeohane01/IDS706-Microservice/actions/workflows/test.yml/badge.svg)](https://github.com/mkeohane01/IDS706-Microservice/actions/workflows/workflow-name.yml)
 [![Format Code](https://github.com/mkeohane01/IDS706-Microservice/actions/workflows/format.yml/badge.svg)](https://github.com/mkeohane01/IDS706-Microservice/actions/workflows/workflow-name.yml)
 
-[![Python Autoactions](https://github.com/mkeohane01/python_template/actions/workflows/main.yml/badge.svg)](https://github.com/mkeohane01/python_template/actions/workflows/main.yml)
 
 
 ## Description
@@ -20,25 +19,11 @@ The provided architectural diagram visually represents our system's components: 
 
 ## Usage
 
-After setting up your environment and installing dependencies, you can interact with the microservice through a simple web interface. Fill out the product order form, and upon submission, you will receive an order confirmation. For detailed order information, navigate to http://127.0.0.1:5000/orders/<order_num>.
+The app is cloud hosted using Azure at https://shopnozama.azurewebsites.net/. Here users will be able to place orders for any product in the drop down menu which display an image and price. From there after submitting the form, users will be redirected to their confirmation page base on their unique order number. 
+"/orders/<order_num>"
 
-- Set up a virtual environment 
-    - run "python -m venv 'name of virtual environment'
-    - "source 'name'/bin/activate
-
-- Install dependencies
- 
-- Open index.html in browser
-
--  to run flask server
-```bash
-cd src
-python main.py
-```
-- Should be able to fill out form in html
-    - get order confirmation in browser
-
-- Visit http://127.0.0.1:5000/orders/<order_num> to view order
+Locally, you can also run the app by either building the Docker file or installing requirements.txt manually and running ```python src/main.py```. Here the same application will be hosted at localhost:5000 in development mode. 
+- Note: in order to use the application locally, need to create a .env file with the DB username and password to connect to the cloudhosted DB.
 
 ### Makefile
 `make install` to install, `make lint` to lint, `make format` to format, `make test` to perform tests
@@ -84,19 +69,3 @@ Our teamwork journey highlights the collaborative efforts, challenges overcome, 
 [Nick Conterno Team Reflection](https://docs.google.com/document/d/1jnJnaYOIGLPxsWdKwUis8FfXEBNhDxDolO_yqYPvaAE/edit?usp=sharing)
 
 [Tommy McGuire Team Reflection](https://docs.google.com/document/d/1VeugUnDxT4jfaOQPQwAEz4hCPmvNAvmbmUhytG7h_2Y/edit?usp=sharing)
-
-## To Use
-
-- Load requirements and make venv ofc
-
-- Open index.html in browser
-
--  to run flask server
-```bash
-cd src
-python main.py
-```
-- Should be able to fill out form in html
-    - get order confirmation in browser
-
-- Visit http://127.0.0.1:5000/orders/<order_num> to view order
