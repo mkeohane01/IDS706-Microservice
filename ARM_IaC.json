@@ -1,0 +1,80 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "webAppName": {
+      "type": "string",
+      "defaultValue": "shopnozama",
+      "metadata": {
+        "description": "Name of the Azure Web App"
+      }
+    },
+    "appServicePlanName": {
+      "type": "string",
+      "defaultValue": "IDSFinal706",
+      "metadata": {
+        "description": "Name of the App Service Plan"
+      }
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "East US",
+      "metadata": {
+        "description": "Location for all resources."
+      }
+    },
+    "dockerImage": {
+      "type": "string",
+      "defaultValue": "nconterno1/nazoma3:latest",
+      "metadata": {
+        "description": "Docker image to use"
+      }
+    }
+  },
+  "variables": {
+    "linuxFxVersion": "[concat('DOCKER|', parameters('dockerImage'))]"
+    },
+  "resources": [
+    {
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "2020-12-01",
+      "name": "[parameters('appServicePlanName')]",
+      "location": "[parameters('location')]",
+      "kind": "linux",
+      "sku": {
+        "name": "P1v2",
+        "tier": "PremiumV2",
+        "size": "P1v2",
+        "family": "Pv2",
+        "capacity": 1
+      },
+      "properties": {
+        "reserved": true
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2020-12-01",
+      "name": "[parameters('webAppName')]",
+      "location": "[parameters('location')]",
+      "kind": "app,linux,container",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', parameters('appServicePlanName'))]"
+      ],
+      "properties": {
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('appServicePlanName'))]",
+        "httpsOnly": true,
+        "siteConfig": {
+          "linuxFxVersion": "[variables('linuxFxVersion')]",
+          "alwaysOn": true
+        }
+      }
+    }
+  ],
+  "outputs": {
+    "webAppUrl": {
+      "type": "string",
+      "value": "[concat('https://', parameters('webAppName'), '.azurewebsites.net')]"
+      }
+    }
+}
