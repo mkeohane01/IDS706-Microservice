@@ -12,7 +12,10 @@ test:
 	pytest -vv ./src/app
 
 load_test:
-	locust -f load_test.py --headless --users 1000 --spawn-rate 100 --run-time 1m --host http://localhost:5000
+	locust -f src/health_load_test.py --headless --users 1000 --spawn-rate 100 --run-time 1m --host https://shopnozama.azurewebsites.net/
 
 load_test_gui:
-	locust -f load_test.py
+	locust -f src/health_load_test.py
+
+load_test_datapipe_gui:
+	locust -f src/load_test_data.py
