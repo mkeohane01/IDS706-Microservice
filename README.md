@@ -14,7 +14,7 @@ Our microservice leverages Flask to provide a responsive and scalable web interf
 
 ## Architecture
 
-![Alt text](<architecture.png>)
+![Alt text](images/architecture.png)
 
 The provided architectural diagram visually represents our system's components: the web interface, Flask server, database, and data processing modules. These components interact to offer a streamlined order handling process, from user input through data storage and analysis.
 
@@ -66,8 +66,17 @@ We utilize pyodbc for its robust SQL Server connectivity, facilitating efficient
 
 ## Infrastructure as Code (IaC)
 
-Our project employs Azure Resource Manager (ARM) for infrastructure management, allowing us to define and deploy all necessary infrastructure resources programmatically and reliably.
+Our project employs Azure Resource Manager (ARM) for infrastructure management, allowing us to define and deploy all necessary infrastructure resources programmatically and reliably. We have the infrastructure defined in ARM_IaC.json and can push changes directly to Azure through their CLI or initialize new instances with the same parameters.
 
+To use Azure CLI to deploy an instance using ARM:
+```bash
+az login
+ax deployment group create \
+    --resource-group <Azure resource group name>
+    --template-file ARM_IaC.json
+    --parameters webAppName=<name of app> appServicePlanName=<name of service plan> location=<server location> dockerImage=<docker image to deploy>
+```
+ARM_IaC.json has default values for our specific project so can be deployed (if we are logged in) without filling in your specifc parameters.
 ## Continuous Integration and Continuous Delivery (CI/CD)
 
 Our CI/CD pipeline, built with GitHub Actions, automates our development lifecycle processes. The workflows in .github/workflows – namely format.yml, install.yml, lint.yml, continuousdelivery.yml, and test.yml – ensure consistent code quality and streamlined deployment.
@@ -81,6 +90,14 @@ We used Distroless Docker images to containerize the microservice, focusing on s
 ## Limitations and Improvements
 
 Currently, the microservice is optimized for SQL databases, which might limit integration with other types of databases. Future iterations could include broader database support and enhanced data analytics features.
+
+## AI Code Helpers
+
+Throughout this project, we worked closely with AI - LLM tools. Copilot, integrated in to VSCode, is great at providing frameworks to build functions based on commented commands along with just improving workflows with line-by-line autocomplete directly in the IDE. 
+
+Another tool which helped us a lot throughout the project was ChatGPT, specifically GPT4. We used this to help skeleton out more specific files such as the ARM and workflows because we could upload certain information for it to use. ChatGPT is also great at talking through ideas as well as getting help creating css and styling for the front end.
+
+Overall incorporating Large Language Models in to our workflows allowed us to be a lot more productive in a short amoount of time. We could brainstorm ideas with it, prompt it to outline code files, as well as talking through it for help debugging.
 
 ## Teamwork Reflection
 
