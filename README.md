@@ -38,9 +38,19 @@ Locally, you can also run the app by either building the Docker file or installi
 
 ## Load Testing
 
-Our load testing, achievable via make load_test commands, ensures the microservice can handle up to 10,000 requests per second, demonstrating its capability to perform under high-traffic conditions.
+### Objective: Achieving 10,000 Requests Per Second
 
-`make load_test` to perform load test, `make load_test_gui` to load test the GUI.
+Through our streamlined load testing process, accessible via `make` commands, we've rigorously evaluated our service's performance under high-traffic scenarios. Here's what we discovered:
+
+- Flask Server Health Check: Using `make load_test`, we can push over 5,000 requests per second, showcasing robust responsiveness.
+- Full Data Pipeline Performance: With `make load_test_datapipe_gui`, we observed a throughput of 200 requests per second. This is primarily constrained by the database's capacity for data storage and retrieval.
+
+### Interactive Testing Tools:
+
+- `make load_test_gui`: Launches an intuitive, locally-hosted interface for real-time load testing and analysis of the Flask server.
+- make `load_test_datapipe_gui`: Extends this capability to the entire data pipeline, offering a hands-on, visual approach to performance assessment.
+
+Each tool is designed to give us a comprehensive understanding of our system's limits and areas for improvement, guiding us toward our ultimate goal of 10,000 requests per second.
 
 ## Data Engineering 
 
