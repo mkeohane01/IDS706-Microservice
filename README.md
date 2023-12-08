@@ -27,7 +27,8 @@ Locally, you can also run the app by either building the Docker file or installi
 
 ### Example
 
-<img width="1440" alt="Screenshot 2023-12-07 at 10 53 46 PM" src="https://github.com/mkeohane01/IDS706-Microservice/assets/141086024/e35fb2dd-3d78-4a6f-97b1-726f80929756">
+<img width="1438" alt="Screenshot 2023-12-07 at 10 57 10 PM" src="https://github.com/mkeohane01/IDS706-Microservice/assets/141086024/1e16aa74-462d-4d6b-b5f4-57b38104f478">
+
 
 <img width="472" alt="Screenshot 2023-12-07 at 10 54 18 PM" src="https://github.com/mkeohane01/IDS706-Microservice/assets/141086024/86b2e8ae-c2e0-404f-bbbc-8e64e8a1d3f4">
 
