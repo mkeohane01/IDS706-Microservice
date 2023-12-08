@@ -25,6 +25,13 @@ The app is cloud hosted using Azure at https://shopnozama.azurewebsites.net/. He
 Locally, you can also run the app by either building the Docker file or installing requirements.txt manually and running ```python src/main.py```. Here the same application will be hosted at localhost:5000 in development mode. 
 - Note: in order to use the application locally, need to create a .env file with the DB username and password to connect to the cloudhosted DB.
 
+### Example
+
+<img width="1440" alt="Screenshot 2023-12-07 at 10 53 46 PM" src="https://github.com/mkeohane01/IDS706-Microservice/assets/141086024/e35fb2dd-3d78-4a6f-97b1-726f80929756">
+
+<img width="472" alt="Screenshot 2023-12-07 at 10 54 18 PM" src="https://github.com/mkeohane01/IDS706-Microservice/assets/141086024/86b2e8ae-c2e0-404f-bbbc-8e64e8a1d3f4">
+
+
 ### Makefile
 `make install` to install, `make lint` to lint, `make format` to format, `make test` to perform tests
 
@@ -40,7 +47,7 @@ We utilize pyodbc for its robust SQL Server connectivity, facilitating efficient
 
 ## Infrastructure as Code (IaC)
 
-Our project employs ____ for infrastructure management, allowing us to define and deploy all necessary infrastructure resources programmatically and reliably.
+Our project employs Azure Resource Manager (ARM) for infrastructure management, allowing us to define and deploy all necessary infrastructure resources programmatically and reliably.
 
 ## Continuous Integration and Continuous Delivery (CI/CD)
 
