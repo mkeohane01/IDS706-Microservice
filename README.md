@@ -37,6 +37,9 @@ Locally, you can also run the app by either building the Docker file or installi
 ### Makefile
 `make install` to install, `make lint` to lint, `make format` to format, `make test` to perform tests
 
+### Database
+We host our database on Azure, using a general purpose V5 instance with 2 cores. Our database has two tables, one which stores all of the products, and one which keeps track of all of the orders that are placed. 
+
 ## Load Testing
 
 ### Objective: Achieving 10,000 Requests Per Second
@@ -45,6 +48,10 @@ Through our streamlined load testing process, accessible via `make` commands, we
 
 - Flask Server Health Check: Using `make load_test`, we can push over 5,000 requests per second, showcasing robust responsiveness.
 - Full Data Pipeline Performance: With `make load_test_datapipe_gui`, we observed a throughput of 200 requests per second. This is primarily constrained by the database's capacity for data storage and retrieval and spending limits.
+
+- We were able to get to about 4600 requests per second by using 18 instances of a premium azure web app, while implementing some load management strategies. Unfortunately, this costs quite a bit of money, and therefore we have since scaled back to manage the cost. With access to more instances, and perhaps a more expensive instance type, we may be able to reach 10,000, but at the momenet we lack the funds to accomplish this task. A graph of the performance using locust at our peak is shown below:
+![Alt text](total_requests_per_second_1701983455.png) 
+
 
 ### Interactive Testing Tools:
 
@@ -55,7 +62,7 @@ Each tool is designed to give us a comprehensive understanding of our system's l
 
 ## Data Engineering 
 
-We utilize pyodbc for its robust SQL Server connectivity, facilitating efficient data transactions and storage. This choice enhances our system's ability to handle large volumes of data with high reliability.
+We utilize pyodbc for its robust SQL Server connectivity, facilitating efficient data transactions and storage. This choice enhances our system's ability to handle large volumes of data with high reliability. This also requires an extra download of msodbcsql18 which cannot be installed via pip. This is automatically downloaded via the docker image on linux, however.
 
 ## Infrastructure as Code (IaC)
 
@@ -64,6 +71,8 @@ Our project employs Azure Resource Manager (ARM) for infrastructure management, 
 ## Continuous Integration and Continuous Delivery (CI/CD)
 
 Our CI/CD pipeline, built with GitHub Actions, automates our development lifecycle processes. The workflows in .github/workflows – namely format.yml, install.yml, lint.yml, continuousdelivery.yml, and test.yml – ensure consistent code quality and streamlined deployment.
+
+Our web application automatically detects changes in dockerhub, and because we continuously deliver to docker, we thereby continuously deliver to our web app on Azure.
 
 ## Dockerization
 
