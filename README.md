@@ -52,7 +52,7 @@ Our project employs Azure Resource Manager (ARM) for infrastructure management, 
 
 ## Continuous Integration and Continuous Delivery (CI/CD)
 
-Our CI/CD pipeline, built with GitHub Actions, automates our development lifecycle processes. The workflows in .github/workflows – namely format.yml, install.yml, lint.yml, main.yml, and test.yml – ensure consistent code quality and streamlined deployment.
+Our CI/CD pipeline, built with GitHub Actions, automates our development lifecycle processes. The workflows in .github/workflows – namely format.yml, install.yml, lint.yml, continuousdelivery.yml, and test.yml – ensure consistent code quality and streamlined deployment.
 
 ## Dockerization
 
