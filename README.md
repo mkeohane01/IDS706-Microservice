@@ -26,6 +26,7 @@ The app is cloud hosted using Azure at https://shopnozama.azurewebsites.net/. He
 Locally, you can also run the app by either building the Docker file or installing requirements.txt manually and running ```python src/main.py```. Here the same application will be hosted at localhost:5000 in development mode. 
 - Note: in order to use the application locally, need to create a .env file with the DB username and password to connect to the cloudhosted DB.
 
+When the app is hosted, a log file is generated and automatically updated with useful information found in src/app.log
 ### Example
 
 <img width="1438" alt="Screenshot 2023-12-07 at 10 57 10 PM" src="https://github.com/mkeohane01/IDS706-Microservice/assets/141086024/1e16aa74-462d-4d6b-b5f4-57b38104f478">
