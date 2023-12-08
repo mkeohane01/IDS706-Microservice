@@ -1,4 +1,4 @@
-from locust import HttpUser, task, between, FastHttpUser
+from locust import task, between, FastHttpUser
 
 class HealthCheckUser(FastHttpUser):
     wait_time = between(0.01, 0.01)  # Adjust this as needed
