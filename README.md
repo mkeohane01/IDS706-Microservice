@@ -48,7 +48,7 @@ Through our streamlined load testing process, accessible via `make` commands, we
 ### Interactive Testing Tools:
 
 - `make load_test_gui`: Launches an intuitive, locally-hosted interface for real-time load testing and analysis of the Flask server.
-- make `load_test_datapipe_gui`: Extends this capability to the entire data pipeline, offering a hands-on, visual approach to performance assessment.
+- `make load_test_datapipe_gui`: Extends this capability to the entire data pipeline, offering a hands-on, visual approach to performance assessment.
 
 Each tool is designed to give us a comprehensive understanding of our system's limits and areas for improvement, guiding us toward our ultimate goal of 10,000 requests per second.
 
