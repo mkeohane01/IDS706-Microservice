@@ -80,7 +80,13 @@ We used Distroless Docker images to containerize the microservice, focusing on s
 
 ## Limitations and Improvements
 
-Currently, the microservice is optimized for SQL databases, which might limit integration with other types of databases. Future iterations could include broader database support and enhanced data analytics features.
+At present, our microservice is tailored for optimal performance with SQL databases. This specialization, while efficient, narrows our compatibility with diverse database systems. Looking ahead, we are focusing on two pivotal enhancements:
+
+1. Broader Database Integration: Future updates will introduce support for a variety of database types, including NoSQL databases like MongoDB and Cassandra, and NewSQL databases like Google Spanner. This expansion will not only diversify our data management capabilities but also cater to a wider range of application requirements.
+
+2. Advanced Data Analytics Features: Alongside broader database support, we aim to incorporate sophisticated data analytics functionalities. This could involve integrating with databases designed for large-scale data processing, such as Apache Hadoop or Google BigQuery, enhancing our ability to handle complex data sets and deliver deeper insights.
+
+These advancements will position our microservice as a more versatile and powerful tool, capable of seamlessly integrating with a range of database ecosystems and addressing more complex data analysis needs.
 
 ## Teamwork Reflection
 
