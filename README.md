@@ -47,7 +47,7 @@ We host our database on Azure, using a general purpose V5 instance with 2 cores.
 
 Through our streamlined load testing process, accessible via `make` commands, we've rigorously evaluated our service's performance under high-traffic scenarios. Here's what we discovered:
 
-- Flask Server Health Check: Using `make load_test`, we can push over 5,000 requests per second, showcasing robust responsiveness.
+- Flask Server Health Check: Using `make load_test`, we can handle almost 5,000 requests per second, showcasing robust responsiveness.
 - Full Data Pipeline Performance: With `make load_test_datapipe_gui`, we observed a throughput of 200 requests per second. This is primarily constrained by the database's capacity for data storage and retrieval and spending limits.
 
 - We were able to get to about 4600 requests per second by using 18 instances of a premium azure web app, while implementing some load management strategies. Unfortunately, this costs quite a bit of money, and therefore we have since scaled back to manage the cost. With access to more instances, and perhaps a more expensive instance type, we may be able to reach 10,000, but at the momenet we lack the funds to accomplish this task. A graph of the performance using locust at our peak is shown below:
