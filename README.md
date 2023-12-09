@@ -63,7 +63,7 @@ Each tool is designed to give us a comprehensive understanding of our system's l
 
 ## Data Engineering 
 
-We utilize pyodbc for its robust SQL Server connectivity, facilitating efficient data transactions and storage. This choice enhances our system's ability to handle large volumes of data with high reliability. This also requires an extra download of msodbcsql18 which cannot be installed via pip. This is automatically downloaded via the docker image on linux, however.
+We utilize pyodbc for its robust SQL Server connectivity powered by Azure, facilitating efficient data transactions and storage. This choice enhances our system's ability to handle large volumes of data with high reliability. 
 
 ## Infrastructure as Code (IaC)
 
@@ -78,6 +78,7 @@ ax deployment group create \
     --parameters webAppName=<name of app> appServicePlanName=<name of service plan> location=<server location> dockerImage=<docker image to deploy>
 ```
 ARM_IaC.json has default values for our specific project so can be deployed (if we are logged in) without filling in your specifc parameters.
+
 ## Continuous Integration and Continuous Delivery (CI/CD)
 
 Our CI/CD pipeline, built with GitHub Actions, automates our development lifecycle processes. The workflows in .github/workflows – namely format.yml, install.yml, lint.yml, continuousdelivery.yml, and test.yml – ensure consistent code quality and streamlined deployment.
@@ -92,9 +93,9 @@ We used Distroless Docker images to containerize the microservice, focusing on s
 
 At present, our microservice is tailored for optimal performance with SQL databases. This specialization, while efficient, narrows our compatibility with diverse database systems. Looking ahead, we are focusing on two pivotal enhancements:
 
-1. Broader Database Integration: Future updates will introduce support for a variety of database types, including NoSQL databases like MongoDB and Cassandra, and NewSQL databases like Google Spanner. This expansion will not only diversify our data management capabilities but also cater to a wider range of application requirements.
+1. Better Database Integration: Future updates to improve robustness of our database including hosting the pipeline through Databricks and DeltaLakes. This expansion will not only improve our data management capabilities but also cater to a wider range of application requirements. We also can load the data in batches to improve high load volumes.
 
-2. Advanced Data Analytics Features: Alongside broader database support, we aim to incorporate sophisticated data analytics functionalities. This could involve integrating with databases designed for large-scale data processing, such as Apache Hadoop or Google BigQuery, enhancing our ability to handle complex data sets and deliver deeper insights.
+2. Advanced Data Analytics Features: Alongside improved database support, we aim to incorporate sophisticated data analytics functionalities. This could involve integrating with databases designed for large-scale data processing, such as Apache Hadoop or Google BigQuery, enhancing our ability to handle complex data sets and deliver deeper insights.
 
 These advancements will position our microservice as a more versatile and powerful tool, capable of seamlessly integrating with a range of database ecosystems and addressing more complex data analysis needs.
 
