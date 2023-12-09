@@ -119,6 +119,6 @@ Our teamwork journey highlights the collaborative efforts, challenges overcome, 
 
 [Nick Strauch Team Reflection](https://docs.google.com/document/d/11x82q40JyLOvZKL-fGyUzPQr8a5qsNOlg0JN-oE_UN0/edit?usp=sharing)
 
-[Nick Conterno Team Reflection](https://docs.google.com/document/d/1jnJnaYOIGLPxsWdKwUis8FfXEBNhDxDolO_yqYPvaAE/edit?usp=sharing)
+[Nick Conterno Team Reflection](https://docs.google.com/document/d/19UL7M-bqnidOxN_v19f6okCLIGygoFG0nQ_qX5dhOkc/edit#heading=h.3pq59h40sapi)
 
 [Tommy McGuire Team Reflection](https://docs.google.com/document/d/1VeugUnDxT4jfaOQPQwAEz4hCPmvNAvmbmUhytG7h_2Y/edit?usp=sharing)
