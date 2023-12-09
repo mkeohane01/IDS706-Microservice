@@ -117,7 +117,7 @@ Our teamwork journey highlights the collaborative efforts, challenges overcome, 
 
 [Daniel Medina Team Reflection](https://docs.google.com/document/d/1ViY7u3oRpLIyjkn9Te6N8OfZiC_zlpbdrlPW3Pj0jus/edit?usp=sharing)
 
-[Nick Strauch Team Reflection](https://docs.google.com/document/d/11x82q40JyLOvZKL-fGyUzPQr8a5qsNOlg0JN-oE_UN0/edit?usp=sharing)
+[Nick Strauch Team Reflection](https://docs.google.com/document/d/1QkJkUX8Mx-Ou9T8eQ40dQ4_4uQzbywIb0cxbLtBimps/edit?usp=sharing)
 
 [Nick Conterno Team Reflection](https://docs.google.com/document/d/19UL7M-bqnidOxN_v19f6okCLIGygoFG0nQ_qX5dhOkc/edit#heading=h.3pq59h40sapi)
 
