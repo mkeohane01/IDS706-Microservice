@@ -7,7 +7,10 @@ load_dotenv()
 
 def get_db_connection():
     """
-    Returns a connection to the database.
+    Returns a pyodbc connection to the Azure database.
+    If you are running this locally, you will need to install the ODBC Driver 17 for SQL Server.
+
+    The connection username and password is stored in the private .env file.
     """
     connection = pyodbc.connect(
         'Driver={ODBC Driver 18 for SQL Server};'
@@ -25,6 +28,11 @@ def get_db_connection():
 def write_order_to_db(order):
     """
     Writes an order to the database and returns the ID of the newly created order.
+
+    Args:
+        order (dict): The order to be written to the database.
+    Returns:
+        order_id (str): The ID of the newly created order.
     """
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -51,7 +59,12 @@ def write_order_to_db(order):
 
 def get_order_from_db(order_id):
     """
-    Returns an order from the database.
+    Retrieves an order from the database.
+
+    Args:
+        order_id (str): The ID of the order to be retrieved.
+    Returns:
+        order_dict (dict): The order as a dictionary.
     """
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -86,6 +99,9 @@ def get_order_from_db(order_id):
 def get_products():
     """
     Returns a list of all products in the database.
+
+    Returns:
+        products (dict): A dict with "products" as a key and a list of products as the value.
     """
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -112,6 +128,11 @@ def get_products():
 def find_popular_products(state):
     """
     Returns a list of the top 3 most popular products for a given state.
+
+    Args:
+        state (str): The state to find popular products for.
+    Returns:
+        products (list): A list of the top 3 most popular products for the given state.
     """
     try:
         conn = get_db_connection()

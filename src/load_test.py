@@ -1,8 +1,14 @@
+"""
+Load test for the microservice.
+"""
 from locust import HttpUser, task, SequentialTaskSet, between
 import random
 from app.utils import get_products, state_abbreviations
 
 class OrderBehavior(SequentialTaskSet):
+    """
+    Simulates the behavior of a user placing an order. Generates random values.
+    """
 
     states = state_abbreviations
     products = [product['product_name'] for product in get_products()['products']]

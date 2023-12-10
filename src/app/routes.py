@@ -6,6 +6,11 @@ from app.utils import write_order_to_db, get_order_from_db, get_products, find_p
 
 @app.route('/', methods=['GET', 'POST'])
 def create_order():
+    """
+    On POST, creates a new order in the database using the user input from the frontend.
+
+    On GET, fetches the list of products from the database and renders the index.html template.
+    """
     if request.method == 'POST':
         try:
             data = request.json
@@ -27,6 +32,9 @@ def create_order():
 
 @app.route('/orders/<string:order_id>', methods=['GET'])
 def get_order(order_id):
+    """
+    Uses the order_id to fetch the order from the database and render the view_order.html template.
+    """
     try:
         order = get_order_from_db(order_id)
         popular_products = list(find_popular_products(state=order["state"]))
@@ -58,6 +66,9 @@ def get_order(order_id):
 
 @app.route('/get_product', methods=['GET'])
 def get_product():
+    """
+    Fetches a product from the database using the product_name.
+    """
     product_name = request.args.get('product_name')
     data = get_products()
     
@@ -70,6 +81,9 @@ def get_product():
 
 @app.route('/health_check', methods=['GET'])
 def health_check():
+    """
+    Simple health check endpoint.
+    """
     return jsonify({'message': 'Healthy :)'}), 200
 
     
